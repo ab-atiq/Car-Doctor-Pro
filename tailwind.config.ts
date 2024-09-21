@@ -14,6 +14,34 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
+  daisyui: {
+    themes: [
+      {
+        carDoctorTheme: {
+          ...require("daisyui/src/theming/themes")["light"],
+          "primary": "#FF3811",
+          "secondary": "teal",
+          ".btn-primary": {
+            color: "#fff",
+            borderColor: "#FF3811",
+          },
+          ".btn-outline.btn-primary:hover": {
+            color: "#fff",
+          },
+        },
+      },
+      "dark",
+      {
+        light: {
+          ...require("daisyui/src/theming/themes")["light"],
+          primary: "#FF3811",
+          secondary: "teal",
+        },
+      },
+    ],
+  },
 };
 export default config;
