@@ -47,7 +47,8 @@ const HomeFeatures = () => {
         <h1 className="text-2xl md:text-4xl my-2 font-bold">Why Choose Us</h1>
         <p className="text-sm capitalize ">
           the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don't look even slightly believable.{" "}
+          humour, or randomised words which do not look even slightly
+          believable.{" "}
         </p>
       </div>
       <div className="grid grid-cols-12 gap-6 my-6 p-2">

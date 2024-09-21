@@ -102,9 +102,9 @@ const SingleServicePage = ({ params }: { params: { id: number } }) => {
           <p className="text-sm">
             There are many variations of passages of Lorem Ipsum available, but
             the majority have suffered alteration in some form, by injected
-            humour, or randomised words which don't look even slightly
+            humour, or randomised words which do not look even slightly
             believable. If you are going to use a passage of Lorem Ipsum, you
-            need to be sure there isn't anything embarrassing hidden in the
+            need to be sure there is not anything embarrassing hidden in the
             middle of text.{" "}
           </p>
           <div className="grid grid-cols-12 gap-3 my-2">
@@ -122,18 +122,18 @@ const SingleServicePage = ({ params }: { params: { id: number } }) => {
           <p>
             There are many variations of passages of Lorem Ipsum available, but
             the majority have suffered alteration in some form, by injected
-            humour, or randomised words which don't look even slightly
+            humour, or randomised words which do not look even slightly
             believable. If you are going to use a passage of Lorem Ipsum, you
-            need to be sure there isn't anything embarrassing hidden in the
+            need to be sure there is not anything embarrassing hidden in the
             middle of text.{" "}
           </p>
           <h3>3 Simple Steps to Process</h3>
           <p>
             There are many variations of passages of Lorem Ipsum available, but
             the majority have suffered alteration in some form, by injected
-            humour, or randomised words which don't look even slightly
+            humour, or randomised words which do not look even slightly
             believable. If you are going to use a passage of Lorem Ipsum, you
-            need to be sure there isn't anything embarrassing hidden in the
+            need to be sure there is not anything embarrassing hidden in the
             middle of text
           </p>
           <div className="grid grid-cols-12 gap-4 my-2">

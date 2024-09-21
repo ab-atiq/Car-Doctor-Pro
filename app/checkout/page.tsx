@@ -12,11 +12,11 @@ const OrderFormPage = () => {
     message: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { name: string; value: string } }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Order Confirmed:", formData);
     // Add your form submission logic here

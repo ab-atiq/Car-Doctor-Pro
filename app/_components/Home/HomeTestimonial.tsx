@@ -1,15 +1,11 @@
 "use client";
-import React, { useState } from "react";
-import { ImGoogle2 } from "react-icons/im";
-import { FaYoutube } from "react-icons/fa6";
-import { FaSquareFacebook } from "react-icons/fa6";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
+import quote from "@/assets/icons/quote.png";
 import userImage1 from "@/assets/images/team/1.jpg";
 import userImage2 from "@/assets/images/team/2.jpg";
 import userImage3 from "@/assets/images/team/3.jpg";
-import quote from "@/assets/icons/quote.png";
 import Image from "next/image";
 
 const testimonialItems = [
@@ -19,7 +15,7 @@ const testimonialItems = [
     name: "Abul Bashar Atiq",
     title: "Engine Expert",
     comment:
-      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. ",
   },
   {
     id: 2,
@@ -27,7 +23,7 @@ const testimonialItems = [
     name: "Atiqur Rahman",
     title: "Technician",
     comment:
-      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. ",
   },
   {
     id: 3,
@@ -35,7 +31,7 @@ const testimonialItems = [
     name: "Rony Islam",
     title: "Driver",
     comment:
-      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. ",
   },
   {
     id: 4,
@@ -43,7 +39,7 @@ const testimonialItems = [
     name: "Rakibul Islam",
     title: "Technician",
     comment:
-      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. ",
   },
   {
     id: 5,
@@ -51,7 +47,7 @@ const testimonialItems = [
     name: "Asif Rahman",
     title: "Technician",
     comment:
-      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. ",
   },
   {
     id: 6,
@@ -59,7 +55,7 @@ const testimonialItems = [
     name: "Hafizul Islam",
     title: "Engine Expert",
     comment:
-      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. ",
   },
 ];
 
@@ -90,7 +86,8 @@ const HomeTestimonial = () => {
         </h1>
         <p className="text-sm">
           The majority have suffered alteration in some form, by injected
-          humour, or randomised words which don't look even slightly believable.{" "}
+          humour, or randomised words which do not look even slightly
+          believable.{" "}
         </p>
       </div>
       <div className="relative">

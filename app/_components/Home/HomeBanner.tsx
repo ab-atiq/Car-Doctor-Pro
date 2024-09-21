@@ -1,14 +1,7 @@
-import Image from "next/image";
-import React from "react";
-import { WiDayCloudy } from "react-icons/wi";
-
-import image1 from "@/assets/images/home_banner/1.jpg";
-
 const banners = [
   {
     id: 1,
-    image:
-      "https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp",
+    image: "https://i.ibb.co.com/XxTyqZb/1.jpg",
     title: "Affordable Price For Car Servicing",
     description:
       "There are many variations of passages of  available, but the majority have suffered alteration in some form",
@@ -17,8 +10,7 @@ const banners = [
   },
   {
     id: 2,
-    image:
-      "https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp",
+    image: "https://i.ibb.co.com/R32SZV0/2.jpg",
     title: "Affordable Price For Car Servicing",
     description:
       "There are many variations of passages of  available, but the majority have suffered alteration in some form",
@@ -27,8 +19,7 @@ const banners = [
   },
   {
     id: 3,
-    image:
-      "https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp",
+    image: "https://i.ibb.co.com/Wp76n7H/3.jpg",
     title: "Affordable Price For Car Servicing",
     description:
       "There are many variations of passages of  available, but the majority have suffered alteration in some form",
@@ -37,8 +28,7 @@ const banners = [
   },
   {
     id: 4,
-    image:
-      "https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp",
+    image: "https://i.ibb.co.com/gjZ67pc/4.jpg",
     title: "Affordable Price For Car Servicing",
     description:
       "There are many variations of passages of  available, but the majority have suffered alteration in some form",
@@ -47,8 +37,7 @@ const banners = [
   },
   {
     id: 5,
-    image:
-      "https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp",
+    image: "https://i.ibb.co.com/R32SZV0/2.jpg",
     title: "Affordable Price For Car Servicing",
     description:
       "There are many variations of passages of  available, but the majority have suffered alteration in some form",
@@ -57,8 +46,7 @@ const banners = [
   },
   {
     id: 6,
-    image:
-      "https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp",
+    image: "https://i.ibb.co.com/Wp76n7H/3.jpg",
     title: "Affordable Price For Car Servicing",
     description:
       "There are many variations of passages of  available, but the majority have suffered alteration in some form",
@@ -74,9 +62,10 @@ const HomeBanner = () => {
         <div
           key={banner.id}
           style={{
-            backgroundImage: `linear-gradient(65deg, rgba(21, 21, 21, 100%), rgba(21, 21, 21, 0%)), url(${banner.image})`,
+            backgroundImage: `linear-gradient(65deg, rgba(21, 21, 21, 100%), rgba(21, 21, 21, 0%)), url(${banner.image}) `,
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "center center",
+            objectFit: "cover",
           }}
           id={`slide${index + 1}`}
           className="carousel-item relative w-full"

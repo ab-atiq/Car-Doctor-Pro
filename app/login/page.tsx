@@ -10,14 +10,14 @@ const LoginPage = () => {
     password: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { name: string; value: string } }) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Sign Up Data:", formData);
     // Add your form submission logic here
@@ -81,7 +81,7 @@ const LoginPage = () => {
 
             <div className="text-center mt-6">
               <p>
-                Don't have an account?{" "}
+                Don&apost have an account?{" "}
                 <a href="/signup" className="text-primary hover:underline">
                   Sign Up
                 </a>

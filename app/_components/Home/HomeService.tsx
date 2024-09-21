@@ -56,7 +56,8 @@ const HomeService = () => {
         <h1 className="text-2xl md:text-4xl my-2">Our Service Area</h1>
         <p className="text-sm">
           The majority have suffered alteration in some form, by injected
-          humour, or randomised words which don't look even slightly believable.
+          humour, or randomised words which do not look even slightly
+          believable.
         </p>
       </div>
       <div className="grid grid-cols-12 gap-6 mt-6">

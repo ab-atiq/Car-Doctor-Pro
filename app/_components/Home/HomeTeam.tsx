@@ -74,7 +74,8 @@ const HomeTeam = () => {
         <h1 className="text-2xl md:text-4xl my-2 font-bold">Meet Our Team</h1>
         <p className="text-sm">
           The majority have suffered alteration in some form, by injected
-          humour, or randomised words which don't look even slightly believable.{" "}
+          humour, or randomised words which do not look even slightly
+          believable.{" "}
         </p>
       </div>
       <div className="relative">
