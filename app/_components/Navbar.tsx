@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import ThemeSwitcher from "./ThemeSwitcher";
 import Image from "next/image";
@@ -6,6 +7,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { IoSearchSharp } from "react-icons/io5";
 import Link from "next/link";
 import MenuIcon from "./MenuIcon";
+import { signOut, useSession } from "next-auth/react";
 
 const links = [
   { label: "Home", href: "/" },
@@ -13,12 +15,12 @@ const links = [
   { label: "Services", href: "/services" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
-  { label: "sign up", href: "/signup" },
-  { label: "login", href: "/login" },
   { label: "manage orders", href: "/dashboard/manage_orders" },
 ];
 
 const Navbar = () => {
+  const session = useSession();
+  console.log(session);
   return (
     <div className="navbar bg-white text-slate-900 container mx-auto">
       <div className="navbar-start">
@@ -61,7 +63,28 @@ const Navbar = () => {
           <IoCartOutline className="hidden sm:block text-2xl" />
         </Link>
         <IoSearchSharp className="hidden sm:block text-2xl" />
-        <button className="btn btn-primary btn-outline">Appointment</button>
+        {session?.status === "loading" && <h6>Loading...</h6>}
+        {session?.data ? (
+          <div className="flex items-center gap-2">
+            <Image
+              src={session?.data?.user?.image!}
+              width={60}
+              height={50}
+              alt="profile pic"
+            />
+            <button
+              className="btn btn-primary btn-outline"
+              onClick={() => signOut()}
+            >
+              Sign Out
+            </button>
+          </div>
+        ) : (
+          <button className="btn btn-primary btn-outline">
+            <Link href={"/login"}>Login</Link>
+          </button>
+        )}
+        {/* <button className="btn btn-primary btn-outline">Appointment</button> */}
       </div>
     </div>
   );

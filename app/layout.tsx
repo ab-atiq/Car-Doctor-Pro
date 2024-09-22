@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./_components/Navbar";
 import ThemeProvider from "./Providers";
 import Footer from "./_components/Footer";
+import AuthProvider from "@/services/AuthProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,9 +25,13 @@ export default function RootLayout({
     <html lang="en">
       <ThemeProvider>
         <body data-theme="carDoctorTheme" className={inter.className}>
-          <Navbar />
-          <main className="container mx-auto">{children}</main>
-          <Footer />
+          <AuthProvider>
+            <div>
+              <Navbar />
+              <main className="container mx-auto">{children}</main>
+              <Footer />
+            </div>
+          </AuthProvider>
         </body>
       </ThemeProvider>
     </html>

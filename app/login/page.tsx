@@ -3,8 +3,16 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { FaFacebook, FaGoogle, FaLinkedin } from "react-icons/fa6";
 import logInImage from "@/assets/images/login/login.svg";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import SocialSignIn from "../_components/SocialSignIn";
 
 const LoginPage = () => {
+  const router = useRouter();
+  const session = useSession();
+  if (session?.status === "authenticated") {
+    router.push("/");
+  }
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,10 +25,17 @@ const LoginPage = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Sign Up Data:", formData);
-    // Add your form submission logic here
+    console.log("Sign In Data:", formData);
+    const res = await signIn("credentials", {
+      ...formData,
+      redirect: false,
+    });
+    console.log("Sign In Response:", res);
+    if (res?.status) {
+      router.push("/");
+    }
   };
 
   return (
@@ -60,24 +75,14 @@ const LoginPage = () => {
               </div>
               <div>
                 <button className="btn btn-primary w-full border-none">
-                  Sign Up
+                  Sign In
                 </button>
               </div>
             </form>
 
             <div className="divider">Or Sign In with</div>
 
-            <div className="flex justify-center space-x-4">
-              <button className="btn btn-circle bg-gray-200 hover:bg-gray-300">
-                <FaFacebook className="w-6 h-6 text-blue-500" />
-              </button>
-              <button className="btn btn-circle bg-gray-200 hover:bg-gray-300">
-                <FaLinkedin className="w-6 h-6 text-orange-500" />
-              </button>
-              <button className="btn btn-circle bg-gray-200 hover:bg-gray-300">
-                <FaGoogle className="w-6 h-6 text-green-600" />
-              </button>
-            </div>
+            <SocialSignIn />
 
             <div className="text-center mt-6">
               <p>

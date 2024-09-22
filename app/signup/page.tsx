@@ -1,10 +1,18 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import { FaFacebook, FaGoogle, FaLinkedin } from "react-icons/fa6";
 import signUpImage from "@/assets/images/login/login.svg";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import SocialSignIn from "../_components/SocialSignIn";
+import { useSession } from "next-auth/react";
 
 const SignUpPage = () => {
+  const router = useRouter();
+  const session = useSession();
+  if (session?.status === "authenticated") {
+    router.push("/");
+  }
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,10 +27,31 @@ const SignUpPage = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Sign Up Data:", formData);
-    // Add your form submission logic here
+    if (formData.password !== formData.confirmPassword) {
+      toast("Passwords do not match");
+      return;
+    }
+    const res = await fetch("http://localhost:3000/signup/api", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      }),
+    });
+    console.log(res);
+
+    if (res.status === 201) {
+      toast("User created successfully");
+      // e.target.reset();
+      router.push("/login");
+    }
   };
 
   return (
@@ -106,17 +135,7 @@ const SignUpPage = () => {
 
             <div className="divider">Or Sign Up with</div>
 
-            <div className="flex justify-center space-x-4">
-              <button className="btn btn-circle bg-gray-200 hover:bg-gray-300">
-                <FaFacebook className="w-6 h-6 text-blue-500" />
-              </button>
-              <button className="btn btn-circle bg-gray-200 hover:bg-gray-300">
-                <FaLinkedin className="w-6 h-6 text-orange-500" />
-              </button>
-              <button className="btn btn-circle bg-gray-200 hover:bg-gray-300">
-                <FaGoogle className="w-6 h-6 text-green-600" />
-              </button>
-            </div>
+            <SocialSignIn />
 
             <div className="text-center mt-6">
               <p>
@@ -129,6 +148,7 @@ const SignUpPage = () => {
           </div>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };
