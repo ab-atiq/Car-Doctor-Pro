@@ -7,6 +7,7 @@ import containerIcon from "@/assets/images/services/container_icon.png";
 import logo from "@/assets/logo.svg";
 import { FaArrowRight } from "react-icons/fa6";
 import Link from "next/link";
+import { getServiceDetails } from "@/app/_components/Services/getServices";
 
 const serviceTypes = [
   {
@@ -69,7 +70,11 @@ const downloadItem = [
   },
 ];
 
-const SingleServicePage = ({ params }: { params: { id: number } }) => {
+const SingleServicePage = async ({ params }: { params: { id: string } }) => {
+  // console.log(params.id);
+  const res = await getServiceDetails(params.id);
+  // console.log(res.data._id);
+
   return (
     <div className="p-5">
       <div>Single Service Page {params.id}</div>
@@ -192,7 +197,7 @@ const SingleServicePage = ({ params }: { params: { id: number } }) => {
             ))}
           </div>
           <div className="mt-4 bg-black text-white p-4 rounded-md flex flex-col gap-3">
-            <h3 className="text-xl font-bold">Download</h3>
+            <h3 className="text-xl font-bold text-base-100">Download</h3>
             {downloadItem.map((item) => (
               <button
                 key={item.id}
@@ -206,8 +211,12 @@ const SingleServicePage = ({ params }: { params: { id: number } }) => {
                     height={50}
                   />
                   <div className="text-start">
-                    <p className="text-lg font-bold">{item.downloadName}</p>
-                    <p className="text-md font-normal">Download</p>
+                    <p className="text-lg font-bold text-base-100">
+                      {item.downloadName}
+                    </p>
+                    <p className="text-md font-normal text-base-100">
+                      Download
+                    </p>
                   </div>
                 </div>
                 <div className="bg-primary p-4 rounded-sm">
@@ -241,7 +250,7 @@ const SingleServicePage = ({ params }: { params: { id: number } }) => {
             <div className="mt-4">
               <h1 className="text-3xl font-bold">Price $250.00</h1>
               <button className="btn btn-primary mt-4 w-full text-xl">
-                <Link href="/checkout">Proceed Checkout</Link>
+                <Link href={`/checkout/${res.data._id}`}>Proceed Checkout</Link>
               </button>
             </div>
           </div>

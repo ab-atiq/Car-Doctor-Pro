@@ -72,10 +72,10 @@ const HomeBanner = () => {
         >
           <div className="align-middle flex justify-between">
             <div className="flex flex-col gap-2 items-start p-10 justify-center w-1/2 ">
-              <h3 className="text-white text-5xl">
+              <h3 className="text-base-100 text-5xl">
                 Affordable Price For Car Servicing
               </h3>
-              <p className="text-white text-sm my-5">
+              <p className="text-base-100 text-sm my-5">
                 There are many variations of passages of available, but the
                 majority have suffered alteration in some form
               </p>

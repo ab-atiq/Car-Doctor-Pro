@@ -18,7 +18,7 @@ const NewServicePage = () => {
 
   const handleSubmit = (e:React.FormEvent) => {
     e.preventDefault();
-    console.log("Order Confirmed:", formData);
+    // console.log("Order Confirmed:", formData);
     // Add your form submission logic here
   };
 

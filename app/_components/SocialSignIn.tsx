@@ -7,7 +7,7 @@ const SocialSignIn = () => {
   const router = useRouter();
   const handleSocialSignIn = async (provider: string) => {
     const res = await signIn(provider);
-    console.log(res);
+    // console.log(res);
     if (res?.status === "authenticated") {
       router.push("/");
     }

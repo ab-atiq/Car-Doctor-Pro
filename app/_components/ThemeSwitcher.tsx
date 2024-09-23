@@ -29,9 +29,9 @@ const ThemeSwitcher = () => {
         onClick={toggleTheme}
         thumbIcon={({ isSelected, className }) =>
           isSelected ? (
-            <SunIcon className={className} />
+            <MoonIcon className={`${className} text-white`} />
           ) : (
-            <MoonIcon className={className} />
+            <SunIcon className={`${className} text-white`} />
           )
         }
       ></Switch>

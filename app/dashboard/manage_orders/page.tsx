@@ -54,8 +54,10 @@ const ManageOrdersPage = () => {
         />
         <div className="absolute inset-0 bg-black opacity-60 m-5 rounded-lg"></div>
         <div className="absolute inset-0 flex flex-col justify-center items-center text-white">
-          <h2 className="text-3xl font-bold">Manage All Orders</h2>
-          <p className="text-sm">Dashboard &gt; Manage Orders</p>
+          <h2 className="text-3xl font-bold text-base-100">
+            Manage All Orders
+          </h2>
+          <p className="text-sm text-base-100">Dashboard &gt; Manage Orders</p>
         </div>
       </div>
 
@@ -83,10 +85,8 @@ const ManageOrdersPage = () => {
                     ${item.price.toFixed(2)}
                   </p>
                   <p className="text-center">{item.date}</p>
-                  <select className="select select-bordered">
-                    <option disabled selected>
-                      Order Status
-                    </option>
+                  <select className="select select-bordered text-black">
+                    <option disabled>Order Status</option>
                     <option>Approved</option>
                     <option>Cancel</option>
                   </select>

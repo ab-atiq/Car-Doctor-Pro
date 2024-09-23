@@ -29,7 +29,7 @@ const SignUpPage = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Sign Up Data:", formData);
+    // console.log("Sign Up Data:", formData);
     if (formData.password !== formData.confirmPassword) {
       toast("Passwords do not match");
       return;
@@ -45,7 +45,7 @@ const SignUpPage = () => {
         password: formData.password,
       }),
     });
-    console.log(res);
+    // console.log(res);
 
     if (res.status === 201) {
       toast("User created successfully");

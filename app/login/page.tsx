@@ -27,12 +27,12 @@ const LoginPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Sign In Data:", formData);
+    // console.log("Sign In Data:", formData);
     const res = await signIn("credentials", {
       ...formData,
       redirect: false,
     });
-    console.log("Sign In Response:", res);
+    // console.log("Sign In Response:", res);
     if (res?.status) {
       router.push("/");
     }

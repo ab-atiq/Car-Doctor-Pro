@@ -6,6 +6,7 @@ import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 
 const handler = NextAuth({
+    secret: process.env.NEXTAUTH_SECRET,
     session: {
         strategy: "jwt",
         maxAge: 30 * 24 * 60 * 60,
@@ -44,7 +45,7 @@ const handler = NextAuth({
     },
     callbacks: {
         async signIn({ user, account }) {
-            console.log(user, account);
+            // console.log(user, account);
             if (account?.provider === "google" || account?.provider === "github") {
                 const { name, email, image } = user;
                 try {

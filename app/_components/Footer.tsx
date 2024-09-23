@@ -7,7 +7,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaSquareFacebook } from "react-icons/fa6";
 const Footer = () => {
   return (
-    <footer className="footer bg-black text-white grid grid-cols-12 gap-6 p-10  md:grid-cols-5">
+    <footer className="footer bg-black text-base-100 grid grid-cols-12 gap-6 p-10  md:grid-cols-5">
       <aside className="col-span-12 md:col-span-2 md:pr-20">
         <Image src={logo} width={60} height={50} alt="logo" />
         <p>

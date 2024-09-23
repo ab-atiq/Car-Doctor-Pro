@@ -23,23 +23,41 @@ const config: Config = {
         carDoctorTheme: {
           ...require("daisyui/src/theming/themes")["light"],
           "primary": "#FF3811",
-          "secondary": "teal",
           ".btn-primary": {
-            color: "#fff",
+            color: "white",
             borderColor: "#FF3811",
           },
           ".btn-outline.btn-primary:hover": {
-            color: "#fff",
+            color: "white",
           },
+          ".bg-white": {
+            "background-color": "white",
+            color: "black",
+          },
+          ".text-white": {
+            color: "black",
+          }
         },
       },
-      "dark",
       {
-        light: {
-          ...require("daisyui/src/theming/themes")["light"],
-          primary: "#FF3811",
-          secondary: "teal",
-        },
+        dark: {
+          ...require("daisyui/src/theming/themes")["dark"],
+          primary: "white",
+          ".btn-primary": {
+            color: "white",
+            borderColor: "#FF3811",
+          },
+          ".btn-outline.btn-primary:hover": {
+            color: "white",
+          },
+          ".bg-white": {
+            "background-color": "black",
+            color: "white",
+          },
+          ".text-white": {
+            color: "white",
+          }
+        }
       },
     ],
   },
