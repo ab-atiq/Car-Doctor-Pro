@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import HomeAbout from "./_components/Home/HomeAbout";
 import HomeBanner from "./_components/Home/HomeBanner";
 import HomeFeatures from "./_components/Home/HomeFeatures";

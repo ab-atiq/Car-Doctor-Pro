@@ -7,10 +7,21 @@ import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
+interface ServiceData {
+  img: string;
+  [key: string]: any; // You can add more properties or use `any` if you don't know the full structure.
+}
+
+interface Service {
+  data: ServiceData;
+  [key: string]: any; // Additional properties if needed
+}
+
 const CheckoutPage = ({ params }: { params: { id: string } }) => {
   const { data } = useSession();
+  // console.log(data);
   const router = useRouter();
-  const [service, setService] = useState({});
+  const [service, setService] = useState<Service | null>(null);
   const LoadService = async (id: string) => {
     const res = await getServiceDetails(id);
     setService(res);
@@ -35,16 +46,26 @@ const CheckoutPage = ({ params }: { params: { id: string } }) => {
   //   setFormData({ ...formData, [e.target.name]: e.target.value });
   // };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // const submitData = {
+    //   name: e.target.name.value,
+    //   date: e.target.date.value,
+    //   email: e.target.email.value,
+    //   price: e.target.price.value,
+    //   phone: e.target.phone.value,
+    //   address: e.target.address.value,
+    //   img: service?.data?.img,
+    // };
+    const form = e.target as HTMLFormElement;
     const submitData = {
-      name: e.target.name.value,
-      date: e.target.date.value,
-      email: e.target.email.value,
-      price: e.target.price.value,
-      phone: e.target.phone.value,
-      address: e.target.address.value,
-      img: service?.data?.img,
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      date: (form.elements.namedItem("date") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      price: (form.elements.namedItem("price") as HTMLInputElement).value,
+      phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
+      address: (form.elements.namedItem("address") as HTMLInputElement).value,
+      img: service?.data?.img ? service?.data?.img : "",
     };
     // console.log("submitData", submitData);
     const res = await fetch("http://localhost:3000/checkout/api/", {
@@ -54,10 +75,10 @@ const CheckoutPage = ({ params }: { params: { id: string } }) => {
       },
       body: JSON.stringify(submitData),
     });
-    const data = await res.json();
-    // console.log("data", data);
-    e.target.reset();
-    toast.success(data.message);
+    const cartData = await res.json();
+    // console.log("data", cartData);
+    form.reset();
+    toast.success(cartData.message);
     router.push("/cart");
   };
 
@@ -90,6 +111,7 @@ const CheckoutPage = ({ params }: { params: { id: string } }) => {
                   placeholder="FullName"
                   value={data?.user?.name ? data?.user?.name : ""}
                   required
+                  disabled
                 />
               </div>
               <div className="form-control">
@@ -119,6 +141,7 @@ const CheckoutPage = ({ params }: { params: { id: string } }) => {
                   placeholder="Email"
                   value={data?.user?.email ? data?.user?.email : ""}
                   required
+                  disabled
                 />
               </div>
               <div className="form-control">

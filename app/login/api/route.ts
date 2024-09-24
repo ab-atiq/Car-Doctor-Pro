@@ -7,6 +7,10 @@ export const GET = async (req: NextRequest) => {
     // console.log(body);
     try {
         const db = await ConnectDB();
+        // Check if db is undefined or null
+        if (!db) {
+            return NextResponse.json({ message: "Database connection failed" }, { status: 500 });
+        }
         const collection = db.collection("users");
         const user = await collection.findOne({ email: body.email });
         if (!user) {
