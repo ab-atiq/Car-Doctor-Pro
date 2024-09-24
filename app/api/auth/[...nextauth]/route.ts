@@ -47,13 +47,15 @@ const handler = NextAuth({
         async signIn({ user, account }) {
             // console.log(user, account);
             if (account?.provider === "google" || account?.provider === "github") {
-                const { name, email, image } = user;
+                // const { name, email, image } = user;
+                const { email } = user;
                 try {
                     const db = await ConnectDB();
                     const userCollection = db.collection("users");
                     const userExist = await userCollection.findOne({ email });
                     if (!userExist) {
-                        const res = await userCollection.insertOne({ ...user, provider: account?.provider });
+                        // const res = await userCollection.insertOne({ ...user, provider: account?.provider });
+                        await userCollection.insertOne({ ...user, provider: account?.provider });
                         return user
                     } else {
                         return user

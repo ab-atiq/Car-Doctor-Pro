@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import { FaFacebook, FaGoogle, FaLinkedin } from "react-icons/fa6";
 import logInImage from "@/assets/images/login/login.svg";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";

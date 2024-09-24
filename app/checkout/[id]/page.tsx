@@ -4,9 +4,12 @@ import banner from "@/assets/images/checkout/checkout_banner.png";
 import Image from "next/image";
 import { getServiceDetails } from "@/app/_components/Services/getServices";
 import { useSession } from "next-auth/react";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const CheckoutPage = ({ params }: { params: { id: string } }) => {
   const { data } = useSession();
+  const router = useRouter();
   const [service, setService] = useState({});
   const LoadService = async (id: string) => {
     const res = await getServiceDetails(id);
@@ -17,28 +20,48 @@ const CheckoutPage = ({ params }: { params: { id: string } }) => {
     LoadService(params.id);
   }, [params.id]);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    date: "",
-    email: "",
-    price: 0,
-    phone: "",
-    address: "",
-  });
+  // const [formData, setFormData] = useState({
+  //   name: data?.user?.name,
+  //   date: "",
+  //   email: data?.user?.email,
+  //   price: service?.data?.price,
+  //   phone: "",
+  //   address: "",
+  // });
 
-  const handleChange = (e: {
-    target: { name: string; value: string | number };
-  }) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // const handleChange = (e: {
+  //   target: { name: string; value: string | number };
+  // }) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // console.log("Order Confirmed:", formData);
-    // Add your form submission logic here
+    const submitData = {
+      name: e.target.name.value,
+      date: e.target.date.value,
+      email: e.target.email.value,
+      price: e.target.price.value,
+      phone: e.target.phone.value,
+      address: e.target.address.value,
+      img: service?.data?.img,
+    };
+    // console.log("submitData", submitData);
+    const res = await fetch("http://localhost:3000/checkout/api/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(submitData),
+    });
+    const data = await res.json();
+    // console.log("data", data);
+    e.target.reset();
+    toast.success(data.message);
+    router.push("/cart");
   };
 
-  console.log(service?.data?.price);
+  // console.log(service?.data);
 
   return (
     <div className="p-5">
@@ -65,8 +88,7 @@ const CheckoutPage = ({ params }: { params: { id: string } }) => {
                   name="name"
                   className="input input-bordered w-full"
                   placeholder="FullName"
-                  defaultValue={data?.user?.name ? data?.user?.name : ""}
-                  onChange={handleChange}
+                  value={data?.user?.name ? data?.user?.name : ""}
                   required
                 />
               </div>
@@ -78,9 +100,8 @@ const CheckoutPage = ({ params }: { params: { id: string } }) => {
                   type="date"
                   name="date"
                   className="input input-bordered w-full"
-                  placeholder="Last Name"
+                  placeholder="Date"
                   defaultValue={new Date().getDate()}
-                  onChange={handleChange}
                   required
                 />
               </div>
@@ -96,8 +117,7 @@ const CheckoutPage = ({ params }: { params: { id: string } }) => {
                   name="email"
                   className="input input-bordered w-full"
                   placeholder="Email"
-                  defaultValue={data?.user?.email ? data?.user?.email : ""}
-                  onChange={handleChange}
+                  value={data?.user?.email ? data?.user?.email : ""}
                   required
                 />
               </div>
@@ -110,8 +130,7 @@ const CheckoutPage = ({ params }: { params: { id: string } }) => {
                   name="price"
                   className="input input-bordered w-full"
                   placeholder="Price"
-                  value={service?.data?.price}
-                  // onChange={handleChange}
+                  value={service?.data?.price ? service?.data?.price : 0}
                   required
                   disabled
                 />
@@ -128,8 +147,6 @@ const CheckoutPage = ({ params }: { params: { id: string } }) => {
                   name="address"
                   className="input input-bordered w-full"
                   placeholder="Your Address"
-                  value={formData.address}
-                  onChange={handleChange}
                   required
                 />
               </div>
@@ -142,8 +159,6 @@ const CheckoutPage = ({ params }: { params: { id: string } }) => {
                   name="phone"
                   className="input input-bordered w-full"
                   placeholder="Phone Number"
-                  value={formData.phone}
-                  onChange={handleChange}
                   required
                 />
               </div>
@@ -157,6 +172,7 @@ const CheckoutPage = ({ params }: { params: { id: string } }) => {
           </form>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

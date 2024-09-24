@@ -250,7 +250,9 @@ const SingleServicePage = async ({ params }: { params: { id: string } }) => {
             <div className="mt-4">
               <h1 className="text-3xl font-bold">Price $250.00</h1>
               <button className="btn btn-primary mt-4 w-full text-xl">
-                <Link href={`/checkout/${res.data._id}`}>Proceed Checkout</Link>
+                <Link href={`/checkout/${res?.data?._id}`}>
+                  Proceed Checkout
+                </Link>
               </button>
             </div>
           </div>

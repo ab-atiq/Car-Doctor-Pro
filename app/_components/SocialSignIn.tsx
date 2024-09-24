@@ -8,7 +8,11 @@ const SocialSignIn = () => {
   const handleSocialSignIn = async (provider: string) => {
     const res = await signIn(provider);
     // console.log(res);
-    if (res?.status === "authenticated") {
+    // if (res?.status === "authenticated") {
+    // }
+    if (typeof res?.status === "string" && res.status === "authenticated") {
+      router.push("/");
+    } else if (typeof res?.status === "number" && res.status === 200) {
       router.push("/");
     }
   };

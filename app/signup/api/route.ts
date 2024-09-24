@@ -13,7 +13,8 @@ export const POST = async (req: NextRequest) => {
             return NextResponse.json({ message: "User already exist" }, { status: 400 });
         }
         const hash = bcrypt.hashSync(newUser.password, 14);
-        const result = await collection.insertOne({ ...newUser, password: hash });
+        // const result = await collection.insertOne({ ...newUser, password: hash });
+        await collection.insertOne({ ...newUser, password: hash });
         // console.log(result);
         return NextResponse.json({ message: "User created successfully" }, { status: 201 });
     } catch (error) {

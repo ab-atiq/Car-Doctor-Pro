@@ -66,7 +66,12 @@ const HomeService = async () => {
       </div>
       <div className="grid grid-cols-12 gap-6 mt-6">
         {services?.map(
-          (service: { title; img; price; _id; description; facility }) => (
+          (service: {
+            title: string;
+            img: string;
+            price: number;
+            _id: string;
+          }) => (
             <div
               key={service._id}
               className="col-span-12 border rounded-md p-3 sm:col-span-6 lg:col-span-4"
